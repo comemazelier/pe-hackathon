@@ -42,11 +42,14 @@ exo.dropna(how='all',axis=1,inplace=True)
 #certaines séries sont elles en double ?
 print(exo.duplicated().value_counts())
 
-# %%
+# %% jupyter={"source_hidden": true}
 #oui => on supprime les doublons
 exo=exo.drop_duplicates()
 
 # %%
-exo
+exo['Planet Radius [Earth Radius]'].dropna().hist(bins = [2*k for k in range(11)],width=1);
+
+# %%
+exo['Insolation Flux [Earth Flux]'].dropna().plot.hist(bins = [1*k for k in range(500)],width=1, xlabel='insolation rapportée à celle de la Terre', ylabel = 'nombre de planètes')
 
 # %%
