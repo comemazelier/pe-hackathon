@@ -55,27 +55,17 @@ exo
 
 # %%
 Idée du projet : 
--En recueillant les données de la Nasa, notre idée était d'identifier les planètes avec des conditions proches de celles de la Terre de sorte que ces planètes soient potentiellement habitable. On voulait donc trier la dataframe en ajoutant des conditions sur des colonnes intéressantes comme la température, la distance à la Terre...
--On à tracé à chaque fois la répartition du nombre de planètes en fonction de chaque caractéristique, les tracés suivants se faisant sur les dataframes modifiés par les conditions précédantes
--Nous n'avons pas réussi à tracer les graphes pour toutes les colones.
-
--
-
-# %%
+-En recueillant les données de la Nasa, notre idée était d'identifier les planètes avec des conditions proches de celles de la Terre de sorte que ces planètes soient potentiellement habitables. On voulait donc trier la dataframe en ajoutant des conditions sur des colonnes intéressantes comme la température, la distance à la Terre...
+-On a tracé à chaque fois la répartition du nombre de planètes en fonction de chaque caractéristique, les tracés suivants se faisant sur les dataframes modifiés par les conditions précédentes
+-Nous n'avons pas réussi à tracer les graphes pour toutes les colonnes.
 
 # %%
 exo.columns
 
 # %%
+#TEMPERATURE !!!!!!!
 
-# %%
-
-# %%
-
-# %%
-#TEMP2RATURE !!!!!!!
-
-#on change la dataframe en ne gardant que les planètes dont la température est comprise entre 200 et 1000
+#on change la dataframe en ne gardant que les planètes dont la température est comprise entre 200 et 1000K
 
 df2 = exo[(exo['Equilibrium Temperature [K]'] < 1000) & (exo['Equilibrium Temperature [K]'] > 200)]
 
@@ -86,15 +76,13 @@ plt.show()
 # %%
 #RAYON !!!!!!!
 
-#on choisi un rayon qui soit compris entre 0,5 et 6 fois celui de la TERRE
+#on choisit un rayon qui soit compris entre 0,5 et 6 fois celui de la TERRE
 df3 = df2[df2['Planet Radius [Earth Radius]'].dropna()]
 df4 = df3[(df3['Planet Radius [Earth Radius]'] < 6) & (df3['Planet Radius [Earth Radius]'] > 0,5)]
 
 df3['Planet Radius [Earth Radius]'].plot.hist()
 plt.show()
 
-
-# %%
 
 # %%
 df3['Planet Radius [Earth Radius]'].unique()
@@ -109,6 +97,7 @@ exo['Number of Stars'].plot.hist(bins=100,xlabel="nombre d'étoiles de la planè
 exo['Planet Radius [Earth Radius]'].dropna().hist(bins = [2*k for k in range(11)],width=1);
 
 # %%
+#par flux solaire
 exo['Insolation Flux [Earth Flux]'].dropna().plot.hist(bins = [1*k for k in range(500)],width=1, xlabel='insolation rapportée à celle de la Terre', ylabel = 'nombre de planètes')
 
 # %%
