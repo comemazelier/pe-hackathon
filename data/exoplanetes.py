@@ -27,7 +27,7 @@ titres=[a.split(':',1)[1].strip() for a in titres]
 set([x for x in titres if titres.count(x)>1])
 
 # %%
-#on en renomme une des deux pour pouvoir les utiliser comme noms de colonne dans le dataframe
+#deux sont en double => on en renomme une des deux pour pouvoir les utiliser comme noms de colonne dans le dataframe (on voit qu'il s'agit du jupiter radius en regardant le fichier originel)
 titres[26]='Planet Radius Limit Flag [Jupiter Radius]'
 
 # %%
@@ -47,6 +47,16 @@ print(exo.duplicated().value_counts())
 exo=exo.drop_duplicates()
 
 # %%
+#tri de la dataframe par date de découverte
+exo.sort_values("Discovery Year",inplace=True)
 exo
+
+# %%
+#répartition des années de découvertes de planètes
+exo['Discovery Year'].plot.hist(bins=80,xlabel='année de découverte',ylabel='nombre de planètes');
+
+# %%
+#par nombre d'étoiles
+exo['Number of Stars'].plot.hist(bins=100,xlabel="nombre d'étoiles de la planète",ylabel='nombre de planètes');
 
 # %%
