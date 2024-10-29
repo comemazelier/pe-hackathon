@@ -28,7 +28,7 @@ set([x for x in titres if titres.count(x)>1])
 
 # %%
 #on en renomme une des deux pour pouvoir les utiliser comme noms de colonne dans le dataframe
-titres[26]='Planet Radius Limit Flag 2'
+titres[26]='Planet Radius Limit Flag [Jupiter Radius]'
 
 # %%
 exo=pd.read_csv('exoplanete.csv',skiprows=97,names=titres,index_col='Planet Name')
@@ -37,6 +37,14 @@ exo=pd.read_csv('exoplanete.csv',skiprows=97,names=titres,index_col='Planet Name
 #si jamais il y a des lignes ou colonnes vides
 exo.dropna(how='all',axis=0,inplace=True)
 exo.dropna(how='all',axis=1,inplace=True)
+
+# %%
+#certaines séries sont elles en double ?
+print(exo.duplicated().value_counts())
+
+# %%
+#oui => on supprime les doublons
+exo=exo.drop_duplicates()
 
 # %%
 exo
